@@ -8,7 +8,8 @@ def home(request):
 
 def salvar (request):
     nome = request.POST.get("nome")
-    Pessoa.objects.create(nome=nome)
+    idade = request.POST.get("idade")
+    Pessoa.objects.create(nome=nome, idade=idade)
     pessoas = Pessoa.objects.all()
     return render(request, "index.html",{"pessoas":pessoas})
 
@@ -18,8 +19,10 @@ def editar(request, id):
 
 def update(request, id):
     nome = request.POST.get("nome")
+    idade = request.POST.get("idade")
     pessoa = Pessoa.objects.get(id=id)
     pessoa.nome = nome
+    pessoa.idade = idade
     pessoa.save()
     return redirect(home)
 

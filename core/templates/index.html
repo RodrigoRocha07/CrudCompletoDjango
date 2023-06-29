@@ -21,6 +21,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
+                <th>Idade</th>
                 <th>Editar</th>
                 <th>Deletar</th>
             </tr>
@@ -30,6 +31,7 @@
             <tr>
                 <td>{{pessoa.id}}</td>
                 <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.idade}}</td>
                 <td><a href="{% url 'editar' pessoa.id %}"> Editar </a></td>
                 <td><a href="{% url 'delete' pessoa.id %}">Delete</a></td>
             </tr>
@@ -44,6 +46,7 @@
     <form action="{% url 'salvar'%}" method="POST">
         {% csrf_token %}
         <input type="text" name ="nome">
+        <input type="text" name ="idade">
         <button type="submit">Salvar</button>
 
     </form>
