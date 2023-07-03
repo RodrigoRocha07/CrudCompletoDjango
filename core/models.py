@@ -5,6 +5,8 @@ from django.db import models
 class Pessoa(models.Model):
     nome = models.CharField(max_length=100)
     idade = models.IntegerField(default=0)
+    matricula = models.CharField(max_length=100, default=0000)
+    curso = models.CharField(max_length=100,default="Vazio")
+    periodo = models.CharField(max_length=100, default="Primeiro")
 
-    def __str__(self):
-        return self.nome
+
