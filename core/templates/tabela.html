@@ -1,0 +1,113 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos cadastrados</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    
+<body>
+    <h2>Tabela de alunos</h2>
+    <ul>
+        <li><a href="{% url 'home' %}" >Cadastro</a></li>
+        <li><a href="{% url 'tabela' %}" class="selecionado">Alunos</a></li>
+        <li><a href="{% url 'home' %}" >Contato</a></li>
+        <li><a href="{% url 'home' %}" >Polos institucionais</a></li>
+        <li><a href="{% url 'home' %}" ></a></li>
+        
+    </ul>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Curso</th>
+                <th>Periodo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for pessoa in pessoas %}
+            <tr class="{% cycle 'cinza' 'branco' %}">
+                <td>{{pessoa.matricula}}</td>
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.idade}}</td>
+                <td>{{pessoa.curso}}</td>
+                <td>{{pessoa.periodo}}</td>
+                <td><a href="{% url 'editar' pessoa.id %}"> Editar </a></td>
+                <td><a href="{% url 'delete' pessoa.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<!-- Filtragem de alunos -->
+
+<div id="filtros">
+    <legend>Filtragem de alunos</legend>
+    <fieldset id="campo">
+        <div id="filtro-curso">
+        
+            <form action="{% url 'filtrar_curso' %}"method="POST">
+            {%csrf_token%}
+                <label for="curso">Curso</label>
+                <select name="curso" class="select">
+                {%for curso in cursos%}
+                <option  value="{{ curso }}">{{ curso }}</option>
+                {%endfor%}
+                </select>
+            <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
+        <div id="filtro-periodo">
+            <form action="{% url 'filtrar_periodo' %}"method="POST">
+            {%csrf_token%}
+            <label for="Periodo">Periodo</label>
+                <select name="periodo" class="select">
+                {%for periodo in periodos%}
+                <option value="{{ periodo }}">{{ periodo }}</option>
+                {%endfor%}
+                </select>
+            <button type="submit">Filtrar</button>
+            </form>
+        </div>
+        <div id="limpar">
+            <a href="{%url 'tabela'%}" class="link">Limpar</a>
+        </div>
+            
+        
+    </fieldset>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Matricula</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Curso</th>
+            <th>Periodo</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for filtrado in filtrados %}
+        <tr>
+            <td>{{filtrado.matricula}}</td>
+            <td>{{filtrado.nome}}</td>
+            <td>{{filtrado.idade}}</td>
+            <td>{{filtrado.curso}}</td>
+            <td>{{filtrado.periodo}}</td>
+            <td><a href="{% url 'editar' filtrado.id %}"> Editar </a></td>
+            <td><a href="{% url 'delete' filtrado.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

@@ -8,6 +8,12 @@ def home(request):
     periodos = Pessoa.objects.values_list('periodo', flat=True).distinct()
     return render(request, "index.html", {"pessoas":pessoas,"cursos":cursos, "periodos":periodos})
 
+def tabela(request):
+    pessoas = Pessoa.objects.all()
+    cursos = Pessoa.objects.values_list('curso', flat=True).distinct()
+    periodos = Pessoa.objects.values_list('periodo', flat=True).distinct()
+    return render(request, "tabela.html", {"pessoas":pessoas,"cursos":cursos, "periodos":periodos})
+
 
 def salvar (request):
     nome = request.POST.get("nome")
@@ -36,12 +42,12 @@ def update(request, id):
     pessoa.curso = curso
     pessoa.periodo = periodo
     pessoa.save()
-    return redirect(home)
+    return redirect(tabela)
 
 def delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     pessoa.delete()
-    return redirect(home)
+    return redirect(tabela)
 
 
 def filtrar_curso(request):
@@ -52,7 +58,7 @@ def filtrar_curso(request):
     for pessoa in pessoas:
         if pessoa.curso == curso:
             filtrados.append(pessoa)
-    return render(request, 'index.html',{"pessoas":pessoas, "filtrados":filtrados, "cursos":cursos})
+    return render(request, 'tabela.html',{"pessoas":pessoas, "filtrados":filtrados, "cursos":cursos})
 
 def filtrar_periodo(request):
     filtrados = []
@@ -62,4 +68,4 @@ def filtrar_periodo(request):
     for pessoa in pessoas:
         if pessoa.periodo == periodo:
             filtrados.append(pessoa)
-    return render(request, 'index.html',{"pessoas":pessoas, "filtrados":filtrados,"periodos":periodos})
+    return render(request, 'tabela.html',{"pessoas":pessoas, "filtrados":filtrados,"periodos":periodos})

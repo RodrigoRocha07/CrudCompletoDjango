@@ -1,0 +1,139 @@
+body{
+    background: white;
+}
+body{
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+
+
+/* BARRA DE NAVEGACAO */
+
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;   
+}
+ul{
+    width: 720px;
+    display: block;
+    line-height: 40px;
+    background: url(../img/fundo-horizontal.png) repeat-x left;
+    float: left;
+}
+ul li{
+    float: left;
+}
+ul a{
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 0 2em;
+    line-height: 0 2em;
+    background: url(../img/divisor.png) repeat-y;
+}
+ul a:hover, .selecionado{
+    color: #085662;
+    background-color: #44cade;
+}
+
+/* Cadastro */
+
+#cadastro{
+    width: 720px;
+}
+fieldset{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+}
+legend{
+    font-weight: bold;
+}
+label{
+    display: block;
+    cursor: pointer;
+    width: 10px;
+}
+input{
+    width: 20em;
+}
+button{
+    margin-top: 10px;
+}
+
+/* Tabela */
+
+table{
+    width: 80%;
+    border-collapse: collapse;
+}
+th, td{
+
+    padding: 7px;
+}
+th{
+    text-transform: uppercase;
+    border-top:1px solid #999 ;
+    border-bottom:1px solid #111 ;
+    text-align: left;
+    font-size: 90%;
+    letter-spacing: 0.1em;
+}
+tr.alternado{
+    background: #efefef;
+}
+
+.numero{
+    text-align: right;
+}
+
+tr:hover{
+    background: #c3e6e5;
+}
+
+a{
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+table a{
+    color: rgb(53, 53, 53);
+}
+table a:hover{
+    color: #000000;
+    background: none;
+}
+
+.cinza {
+    background-color: #d4d4d4; /* Cor de fundo para linhas pares */
+}
+
+.branco {
+    background-color: #fff /* Cor de fundo para linhas ímpares */
+}
+
+#filtros{
+    margin-top: 50px;
+    
+}
+#filtro-curso{
+    float: left;
+}
+#filtro-periodo{
+    float: left;
+    margin-left: 25px;
+}
+#limpar a{
+    margin-top: 25px;
+    float:right;
+    display: block;
+    padding: 5px 10px;
+    background-color: #b1b1b1; /* Cor de fundo azul, você pode alterar essa cor */
+    color: #fff; /* Cor do texto branca, você pode alterar essa cor */
+    text-decoration: none; /* Remova o sublinhado do link */
+    border: 2px solid #fff; /* Borda de 2px com a mesma cor de fundo */
+    border-radius: 5px; /* Borda arredondada */
+}
+
